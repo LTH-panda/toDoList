@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import *
 
@@ -20,4 +20,5 @@ def deleteTodo(request):
     delete_todo_id = request.GET['todoNum']
     delete_todo = ToDo.objects.get(id = delete_todo_id)
     delete_todo.delete()
-    return render(request, 'my_to_do_web/index.html')        
+    # delete_todo.isDone = True
+    return HttpResponseRedirect(reverse('index'))        
